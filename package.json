@@ -1,0 +1,24 @@
+{
+  "name": "bear_stream_adventures",
+  "version": "0.1.0",
+  "description": "a stream for bears to catch salmon in aslo node things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.5"
+  },
+  "devDependencies": {
+    "angular": "^1.4.8",
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3",
+    "webpack-stream": "^2.2.0"
+  }
+}
