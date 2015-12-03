@@ -1,0 +1,1 @@
+require('./countries_controller_tests');
