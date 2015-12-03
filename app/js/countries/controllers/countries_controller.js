@@ -2,8 +2,9 @@ module.exports = function(app) {
   app.controller('CountryController', ['$scope', '$http', function($scope, $http) {
     $scope.countries = [];
     $scope.errors = [];
+    $scope.updatingCountries = {};
     var defaults = {description: 'awesome'};
-    $scope.newBear = Object.create(defaults);
+    $scope.newCountry = Object.create(defaults);
 
     $scope.getAll = function() {
       $http.get('/api/countries')
@@ -45,6 +46,18 @@ module.exports = function(app) {
           $scope.errors.push('could not remove country: ' + country.name);
           $scope.getAll();
         });
+    };
+
+    $scope.startUpdate = function(country) {
+      country.editing = true;
+      $scope.updatingCountries[country._id] = {name: country.name, description: country.description, duration: country.duration};
+    };
+    $scope.cancel = function(country) {
+      var oldCountry = $scope.updatingCountries[country._id];
+      country.name = oldCountry.name;
+      country.description = oldCountry.description;
+      country.duration = oldCountry.duration;
+      country.editing = false;
     };
   }]);
 };

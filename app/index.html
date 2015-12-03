@@ -21,7 +21,7 @@
       <input type="text" id="newCountryDescription" data-ng-model="newCountry.description" placeholder="awesome">
 
       <label for="newCountryDuration">Duration of stay:</label>
-      <input type="text" id="newCountryDuration" data-ng-model="newCountryr.flavor" placeholder="5 days">
+      <input type="text" id="newCountryDuration" data-ng-model="newCountry.duration" placeholder="5 days">
 
       <button type="submit" data-ng-disabled="newCountryForm.$invalid">Create New Country</button>
     </form>
@@ -36,14 +36,14 @@
           <input type="text" id="countryName{{country._id}}" required data-ng-model="country.name">
           
           <label for="countryDescription{{country._id}}">Description: </label>
-          <input type="text" id="countryDescription{{country._id}}" data-ng-model="country.description" placeholder="awesome">
+          <input type="text" id="countryDescription" data-ng-model="country.description" placeholder="awesome">
 
-          <label for="countryDuration{{country._id}}">Flavor:</label>
-          <input type="text" id="countryDuration{{country._id}}" data-ng-model="country.duration" placeholder="5 days">
+          <label for="countryDuration{{country._id}}">Duration: </label>
+          <input type="text" id="countryDuration" data-ng-model="country.duration" placeholder="5 days">
           <button type="submit">Update the country</button>
-          <button data-ng-click="country.editing = false">Cancel updating</button>
+          <button data-ng-click="cancel(country)">Cancel updating</button>
         </form>
-        <button data-ng-if="!country.editing" data-ng-click="country.editing = true">Update country</button>
+        <button data-ng-if="!country.editing" data-ng-click="startUpdate(country)">Update country</button>
         <button data-ng-if="!country.editing" data-ng-click="remove(country)">Remove this country</button>
       </li>
     </ul>    
