@@ -1,10 +1,11 @@
+var angular = window.angular;
 module.exports = function(app) {
   app.controller('CountryController', ['$scope', '$http', function($scope, $http) {
     $scope.countries = [];
     $scope.errors = [];
+    $scope.defaults = {description: 'awesome', duration: '5 days'};
     $scope.updatingCountries = {};
-    var defaults = {description: 'awesome'};
-    $scope.newCountry = Object.create(defaults);
+    $scope.newCountry = angular.copy($scope.defaults);
 
     $scope.getAll = function() {
       $http.get('/api/countries')
@@ -19,7 +20,7 @@ module.exports = function(app) {
       $http.post('/api/countries', country)
         .then(function(res) {
           $scope.countries.push(res.data);
-          $scope.newCountry = Object.create(defaults);
+          $scope.newCountry = angular.copy($scope.defaults);
         }, function(err) {
           console.log(err.data)
         });
