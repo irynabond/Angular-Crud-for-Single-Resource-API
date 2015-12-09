@@ -3,6 +3,9 @@ var webpack = require('webpack-stream');
 var concatCss = require('gulp-concat-css');
 var minifyCss = require('gulp-minify-css');
 var watch = require('gulp-watch');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
 
 
 gulp.task('static:dev', function() {
@@ -21,6 +24,16 @@ gulp.task('minify-css', function() {
   .pipe(minifyCss({compatibility: 'ie8'}))
   .pipe(gulp.dest('build/'));
 });
+
+gulp.task('sassify', function() {
+  return gulp.src([
+      'app/sass/style.scss'])
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(concatCss('style.min.css'))
+    .pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(gulp.dest('build/'));
+  })
 
 gulp.task('webpack:dev', function() {
   return gulp.src('app/js/entry.js')
@@ -42,8 +55,8 @@ gulp.task('webpack:test', function() {
   .pipe(gulp.dest('test/client/'))
 });
 
-gulp.task('build:dev', ['webpack:dev', 'static:dev', 'minify-css']);
-gulp.task('css:watch', function() {
-  gulp.watch('app/css/*.css');
-});
+gulp.task('build:dev', ['webpack:dev', 'static:dev', 'sassify']);
 gulp.task('default', ['build:dev']);
+gulp.task('css:watch', function() {
+  gulp.watch('app/style/*.css');
+});
