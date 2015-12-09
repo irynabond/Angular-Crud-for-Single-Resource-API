@@ -5,15 +5,13 @@ var minifyCss = require('gulp-minify-css');
 var watch = require('gulp-watch');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-var rename = require('gulp-rename');
-
 
 gulp.task('static:dev', function() {
   gulp.src('app/**/*.html')
   .pipe(gulp.dest('build/'));
 });
-
-gulp.task('minify-css', function() {
+//the code for minifying css
+/*gulp.task('minify-css', function() {
   return gulp.src([
     'app/css/base.css',
     'app/css/reset.css',
@@ -23,7 +21,7 @@ gulp.task('minify-css', function() {
   .pipe(concatCss('style.min.css'))
   .pipe(minifyCss({compatibility: 'ie8'}))
   .pipe(gulp.dest('build/'));
-});
+});*/
 
 gulp.task('sassify', function() {
   return gulp.src([

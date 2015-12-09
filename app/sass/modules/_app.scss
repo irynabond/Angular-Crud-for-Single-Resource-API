@@ -1,20 +1,37 @@
+/*setting a variable*/
+$primary-color: rgb(67,172,106);
+$margin: 3rem;
+
+/*selector inheritance w/silent + using operations*/
+%font-class {
+	font-size: 11/5 * 1rem;
+}
+
+/*using functions*/
+@function margin-custom ($target, $context) {
+	@return (($target / $context) * 1rem)
+}
 
 body {
   font-family: 'Raleway', sans-serif;
 }
 
+/*operations with directives*/
 h1 {
-  margin-top: 3rem;
+	@if $margin > 0 {
+		margin-top: $margin;
+	}
   border-bottom: 1px solid #333;
-  color: rgb(67,172,106);
+  color: $primary-color;
 }
+
 ol li {
-  margin-left: 1.5rem;
-  font-size: 2.2rem;
-  color: rgb(67,172,106);
+	@extend %font-class;
+  margin-left: margin-custom(3, 2);
+  color: $primary-color;
 }
 
 label {
-  font-size: 2.2rem;
+  @extend %font-class;
   color: rgb(222,111,104);
 }
