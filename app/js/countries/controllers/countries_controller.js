@@ -3,7 +3,7 @@ module.exports = function(app) {
   app.controller('CountryController', ['$scope', '$http', function($scope, $http) {
     $scope.countries = [];
     $scope.errors = [];
-    $scope.defaults = {description: 'awesome', duration: '5 days'};
+    $scope.defaults = {};
     $scope.updatingCountries = {};
     $scope.newCountry = angular.copy($scope.defaults);
 

@@ -3,51 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Countries</title>
+  <link rel="stylesheet" type="text/css" href="/style.min.css">
 </head>
 <body data-ng-app="CountryStreamApp">
-  <h1>Discover the country!</h1>
-  <main data-ng-controller="CountryController" data-ng-init="getAll()">
-    <ul id="errorslist">
-    	<li data-ng-repeat="error in errors">{{error}}</li>
-    </ul>
-
-    <form name="newCountryForm" data-ng-submit="create(newCountry)">
-      <h2>New Country:</h2>
-
-      <label for="newCountryName">Name:</label>
-      <input type="text" id="newCountryName" required data-ng-model="newCountry.name">
-      
-      <label for="newCountryDescription">Description: </label>
-      <input type="text" id="newCountryDescription" data-ng-model="newCountry.description" placeholder="awesome">
-
-      <label for="newCountryDuration">Duration of stay:</label>
-      <input type="text" id="newCountryDuration" data-ng-model="newCountry.duration" placeholder="5 days">
-
-      <button type="submit" data-ng-disabled="newCountryForm.$invalid">Create New Country</button>
-    </form>
-
-    <ul id="countrylist">
-    	<li data-ng-repeat="country in countries">
-        {{country.name}}
-        <form name="countryForm{{country._id}}" data-ng-submit="update(country)" data-ng-if="country.editing">
-          <h2>Editing of  {{country.name}}</h2>
-
-          <label for="countryName{{country._id}}">Name:</label>
-          <input type="text" id="countryName{{country._id}}" required data-ng-model="country.name">
-          
-          <label for="countryDescription{{country._id}}">Description: </label>
-          <input type="text" id="countryDescription" data-ng-model="country.description" placeholder="awesome">
-
-          <label for="countryDuration{{country._id}}">Duration: </label>
-          <input type="text" id="countryDuration" data-ng-model="country.duration" placeholder="5 days">
-          <button type="submit">Update the country</button>
-          <button data-ng-click="cancel(country)">Cancel updating</button>
-        </form>
-        <button data-ng-if="!country.editing" data-ng-click="startUpdate(country)">Update country</button>
-        <button data-ng-if="!country.editing" data-ng-click="remove(country)">Remove this country</button>
-      </li>
-    </ul>    
-  </main>
+<div class="row">
+  <div class="medium-12 columns">
+    <h1>Discover the country!</h1>
+    <main data-ng-controller="CountryController" data-ng-init="getAll()">
+      <ul id="errorslist">
+      	<li data-ng-repeat="error in errors">{{error}}</li>
+      </ul>
+      <form name="newCountryForm" data-ng-submit="create(newCountry)">
+        <label for="newCountryName">Name
+        </label>
+        <input type="text" id="newCountryName" required data-ng-model="newCountry.name">
+        <label for="newCountryDescription">Description: </label>
+        <input type="text" id="newCountryDescription" data-ng-model="newCountry.description" placeholder="awesome">
+        <label for="newCountryDuration">Duration of stay:</label>
+        <input type="text" id="newCountryDuration" data-ng-model="newCountry.duration" placeholder="5 days">
+        <button class = "submit success button" type="submit" data-ng-disabled="newCountryForm.$invalid">Create New Country</button>
+      </form>
+      <ol id="countrylist">
+      	<li data-ng-repeat="country in countries">
+          {{country.name}}
+          <form name="countryForm{{country._id}}" data-ng-submit="update(country)" data-ng-if="country.editing">
+            <h2>Editing of  {{country.name}}</h2>
+            <label for="countryName{{country._id}}">Country's name:</label>
+            <input type="text" id="countryName{{country._id}}" required data-ng-model="country.name">
+            <label for="countryDescription{{country._id}}">Description: </label>
+            <input type="text" id="countryDescription" data-ng-model="country.description">
+            <label for="countryDuration{{country._id}}">Duration: </label>
+            <input type="text" id="countryDuration" data-ng-model="country.duration">
+            <button type="submit" class = "tiny info button">Update the country</button>
+            <button data-ng-click="cancel(country)" class = "tiny secondary button">Cancel updating</button>
+          </form>
+          <button data-ng-if="!country.editing" data-ng-click="startUpdate(country)" class = "tiny warning button">Update country</button>
+          <button data-ng-if="!country.editing" data-ng-click="remove(country)" class = "tiny alert button ">Remove this country</button>
+        </li>
+      </ol>    
+    </main>
+    </div>
+  </div>
   <script src="/bundle.js"></script>
 </body>
 </html>

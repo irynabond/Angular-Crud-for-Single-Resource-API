@@ -12,13 +12,11 @@ gulp.task('static:dev', function() {
 
 gulp.task('minify-css', function() {
   return gulp.src([
-    'app/css/*.css',
-    'app/css/reset.css',
     'app/css/base.css',
-    'app/css/layout.css',
-    'app/css/module.css',
-    'app/css/state.css',
-    'app/css/theme.css'])
+    'app/css/reset.css',
+    'app/css/foundation.css',
+    'app/css/app.css'
+    ])
   .pipe(concatCss('style.min.css'))
   .pipe(minifyCss({compatibility: 'ie8'}))
   .pipe(gulp.dest('build/'));
