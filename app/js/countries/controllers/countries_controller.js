@@ -1,30 +1,27 @@
 var angular = window.angular;
 module.exports = function(app) {
-  app.controller('CountryController', ['$scope', '$http', function($scope, $http) {
+  app.controller('CountryController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
     $scope.countries = [];
     $scope.errors = [];
     $scope.defaults = {};
     $scope.updatingCountries = {};
     $scope.newCountry = angular.copy($scope.defaults);
+    var countryResource = cfResource('countries');
 
-    $scope.getAll = function() {
-      $http.get('/api/countries')
-        .then(function(res) {
-          $scope.countries = res.data;
-        }, function(err) {
-          console.log(err.data);
-        });
+    $scope.getAll = function () {
+      countryResource.getAll(function(err, data) {
+        if (err) return err;
+        $scope.countries = data;
+      });
     };
 
-    $scope.create = function(country) {
-      $http.post('/api/countries', country)
-        .then(function(res) {
-          $scope.countries.push(res.data);
-          $scope.newCountry = angular.copy($scope.defaults);
-        }, function(err) {
-          console.log(err.data)
-        });
-    };
+   $scope.create = function(country) {
+    countryResource.create(country, function(err, data){
+    if (err) return err;
+    $scope.countries.push(data);
+    $scope.newCountry = angular.copy($scope.defaults); 
+  });
+};
 
     $scope.update = function(country) {
       country.editing = false;
