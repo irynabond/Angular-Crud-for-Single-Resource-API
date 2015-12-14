@@ -49,5 +49,17 @@ describe('country controller', function() {
       expect($scope.countries[0].name).toBe('italy');
       expect($scope.newCountry).toEqual($scope.defaults);
     });
+
+    it('should make a delete request when destroy is called', function() {
+      var country = {name: 'test', description: 'good', duration: 3, _id: 1};
+      $scope.countries = [{name: 'second test', _id: 2}, country, {name: 'third test', _id: 3}];
+      $httpBackend.expectDELETE('/api/countries/1').respond(200);
+      $scope.destroy(country);
+      $httpBackend.flush();
+      expect($scope.countries.length).toBe(2);
+      expect($scope.countries.indexOf(country)).toBe(-1);
+      expect($scope.countries[0].name).toBe('second test');
+      expect($scope.countries[1].name).toBe('third test');
+    });
   });
 });
