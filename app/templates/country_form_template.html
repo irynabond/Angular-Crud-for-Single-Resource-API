@@ -1,0 +1,15 @@
+<div>
+  <form name="{{formName}}" data-ng-submit="save({country: country})">
+    <label for="newCountryName">Country name:</label>
+    <input type="text" id="newCountryName" required data-ng-model="country.name">
+    
+    <label for="newCountryDescription">Description: </label>
+    <input type="text" id="newCountryDescription" data-ng-model="country.description" placeholder="awesome">
+
+    <label for="newCountryDuration">Duration of stay:</label>
+    <input type="text" id="newCountryDuration" data-ng-model="country.duration" placeholder="5 days">
+
+    <button type="submit" class = "submit success button">{{buttonText}}</button>
+  </form>
+  <ng-transclude></ng-transclude>
+</div>

@@ -6,7 +6,6 @@ module.exports = function(app) {
     $scope.defaults = {};
     $scope.updatingCountries = {};
     $scope.newCountry = angular.copy($scope.defaults);
-    $scope.messageOne = "hello from inside the controller";
     var countryResource = cfResource('countries');
 
     $scope.getAll = function () {

@@ -1,0 +1,31 @@
+<section data-ng-controller="CountryController" data-ng-init="getAll()">
+  <ul id="errorslist">
+    <li data-ng-repeat="error in errors">{{error}}</li>
+  </ul>
+
+  <div data-country-transclude-directive data-message-one="">
+  </div>
+
+  <div data-country-form-directive
+    data-button-text="Create new country"
+    data-form-name="newCountryForm"
+    data-country="newCountry"
+    data-save="create(country)"
+  ></div>
+
+  <div data-list-directive data-title="countries">
+    <li data-ng-repeat="country in countries">
+      <div data-country-directive data-country="country"></div>
+      <div data-country-form-directive
+        data-ng-if="country.editing"
+        data-button-text="Save country!"
+        data-form-name="edit{{country._id}}"
+        data-country="country"
+        data-heading-text="Editing {{country.name}}"
+        data-ng-submit="update(country)">
+        <button data-ng-click="cancel(country)">Cancel</button>
+      </div>
+      <button data-ng-if="!country.editing" data-ng-click="startUpdate(country)" class = "tiny warning button">Update country</button>
+      <button data-ng-if="!country.editing" data-ng-click="remove(country)" class = "tiny alert button">Remove country</button>
+    </li>   
+</section>
