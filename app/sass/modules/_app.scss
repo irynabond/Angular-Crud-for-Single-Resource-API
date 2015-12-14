@@ -25,12 +25,15 @@ h1 {
   color: $primary-color;
 }
 
-ol li {
+ol li{
 	@extend %font-class;
   margin-left: margin-custom(3, 2);
   color: $primary-color;
 }
-
+h3 {
+  @extend %font-class;
+  color: $primary-color;
+}
 label {
   @extend %font-class;
   color: rgb(222,111,104);
